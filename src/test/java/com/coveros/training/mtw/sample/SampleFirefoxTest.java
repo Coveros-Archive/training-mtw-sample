@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.After;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
 
@@ -42,6 +43,12 @@ public class SampleFirefoxTest {
 	public void coveros() throws Exception {
 		driver.get("https://www.coveros.com/");
 		assertEquals("Coveros", driver.getTitle());
-		driver.quit();
 	}
+	
+	@After
+	public void tearDown() throws Exception {
+		driver.quit();
+    }
+
+	
 }
