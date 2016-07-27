@@ -42,5 +42,6 @@ public class SampleFirefoxTest {
 	public void coveros() throws Exception {
 		driver.get("https://www.coveros.com/");
 		assertEquals("Coveros", driver.getTitle());
+		driver.quit();
 	}
 }
