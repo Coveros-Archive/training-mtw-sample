@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
 
 import io.github.bonigarcia.wdm.MarionetteDriverManager;
@@ -22,10 +21,12 @@ import io.github.bonigarcia.wdm.MarionetteDriverManager;
  */
 public class SampleFirefoxTest {
 	private WebDriver driver;
+
 	@BeforeClass
 	public static void setupClass() {
 		MarionetteDriverManager.getInstance().setup();
 	}
+
 	@Before
 	public void setUp() throws Exception {
 		driver = new MarionetteDriver();
@@ -38,7 +39,7 @@ public class SampleFirefoxTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void amazon() throws Exception {
+	public void coveros() throws Exception {
 		driver.get("https://www.coveros.com/");
 		assertEquals("Coveros", driver.getTitle());
 	}
