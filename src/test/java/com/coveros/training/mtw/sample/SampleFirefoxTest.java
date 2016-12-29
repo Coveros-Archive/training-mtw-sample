@@ -9,11 +9,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
-import io.github.bonigarcia.wdm.MarionetteDriverManager;
 
 /**
  * Simple test class that verifies proper installation of MTW tools and
@@ -28,13 +25,7 @@ public class SampleFirefoxTest {
 	@BeforeClass
 	public static void beforeClass() {
 		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver/geckodriver");
-
 	}
-
-//	@BeforeClass
-//	public static void setupClass() {
-//		MarionetteDriverManager.getInstance().setup();
-//	}
 
 	@Before
 	public void setUp() throws Exception {
