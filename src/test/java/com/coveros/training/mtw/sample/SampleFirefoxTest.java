@@ -4,12 +4,14 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.After;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.MarionetteDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.github.bonigarcia.wdm.MarionetteDriverManager;
 
@@ -24,13 +26,21 @@ public class SampleFirefoxTest {
 	private WebDriver driver;
 
 	@BeforeClass
-	public static void setupClass() {
-		MarionetteDriverManager.getInstance().setup();
+	public static void beforeClass() {
+		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver/geckodriver");
+
 	}
+
+//	@BeforeClass
+//	public static void setupClass() {
+//		MarionetteDriverManager.getInstance().setup();
+//	}
 
 	@Before
 	public void setUp() throws Exception {
-		driver = new MarionetteDriver();
+		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		capabilities.setCapability("marionette", true);
+		driver = new MarionetteDriver(capabilities);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
@@ -44,11 +54,10 @@ public class SampleFirefoxTest {
 		driver.get("https://www.coveros.com/");
 		assertEquals("Coveros", driver.getTitle());
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		driver.quit();
-    }
+	}
 
-	
 }
