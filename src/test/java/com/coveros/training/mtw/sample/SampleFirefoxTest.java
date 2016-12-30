@@ -9,8 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.MarionetteDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * Simple test class that verifies proper installation of MTW tools and
@@ -22,16 +21,25 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public class SampleFirefoxTest {
 	private WebDriver driver;
 
+	private static String getOs() {
+		String os = System.getProperty("os.name");
+		os = os.substring(0, os.indexOf(" ")).toLowerCase();
+		return os;
+	}
+
 	@BeforeClass
 	public static void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver/geckodriver");
+		String os = getOs();
+		String driverName = "geckodriver";
+		if (os.equals("windows")) {
+			driverName += ".exe";
+		}
+		System.setProperty("webdriver.gecko.driver", "src/test/resources/" + driverName + "/" + os + "/" + driverName);
 	}
 
 	@Before
 	public void setUp() throws Exception {
-		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		capabilities.setCapability("marionette", true);
-		driver = new MarionetteDriver(capabilities);
+		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
@@ -42,7 +50,7 @@ public class SampleFirefoxTest {
 	 */
 	@Test
 	public void coveros() throws Exception {
-		driver.get("https://www.coveros.com/");
+		driver.navigate().to("https://www.coveros.com/");
 		assertEquals("Coveros", driver.getTitle());
 	}
 
