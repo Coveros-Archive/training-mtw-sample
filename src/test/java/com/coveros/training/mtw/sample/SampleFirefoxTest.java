@@ -34,7 +34,7 @@ public class SampleFirefoxTest {
 		if (os.equals("windows")) {
 			driverName += ".exe";
 		}
-		System.setProperty("webdriver.gecko.driver", "src/test/resources/" + driverName + "/" + os + "/" + driverName);
+		System.setProperty("webdriver.gecko.driver", "src/test/drivers/" + driverName + "/" + os + "/" + driverName);
 	}
 
 	@Before
