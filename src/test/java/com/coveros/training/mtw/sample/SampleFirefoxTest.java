@@ -31,10 +31,11 @@ public class SampleFirefoxTest {
 	public static void beforeClass() {
 		String os = getOs();
 		String driverName = "geckodriver";
+		String driverExec = driverName;
 		if (os.equals("windows")) {
-			driverName += ".exe";
+			driverExec += ".exe";
 		}
-		System.setProperty("webdriver.gecko.driver", "src/test/drivers/" + driverName + "/" + os + "/" + driverName);
+		System.setProperty("webdriver.gecko.driver", "src/test/drivers/" + driverName + "/" + os + "/" + driverExec);
 	}
 
 	@Before
@@ -51,7 +52,7 @@ public class SampleFirefoxTest {
 	@Test
 	public void coveros() throws Exception {
 		driver.navigate().to("https://www.coveros.com/");
-		assertEquals("Coveros", driver.getTitle());
+		assertEquals("Home Page - Coveros", driver.getTitle());
 	}
 
 	@After
